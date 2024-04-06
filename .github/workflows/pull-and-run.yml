@@ -12,10 +12,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Pull Docker image
-        run: docker pull ${{ secrets.REGISTRY_USERNAME }}/my-image:${{ github.sha }}
+        run: docker pull ${{ secrets.cicd_renu_latest }}/my-image:${{ github.sha }}
 
       - name: Run Docker container
-        run: docker run --rm ${{ secrets.REGISTRY_USERNAME }}/my-image:${{ github.sha }}
+        run: docker run --rm ${{ secrets.cicd_renu_latest }}/my-image:${{ github.sha }}
 
       - name: Check score
         run: |
