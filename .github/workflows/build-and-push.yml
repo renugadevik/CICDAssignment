@@ -16,6 +16,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build . -t ${{ secrets.REGISTRY_USERNAME }}/my-image:${{ github.sha }}
-          docker push ${{ secrets.REGISTRY_USERNAME }}/my-image:${{ github.sha }}
-Workflow 2: Pull and Run Docker Image
+          docker build . -t ${{ secrets.cicd_renu_latest }}/my-image:${{ github.sha }}
+          docker push ${{ secrets.cicd_renu_latest }}/my-image:${{ github.sha }}
