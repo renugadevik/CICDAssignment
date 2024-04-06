@@ -1,0 +1,28 @@
+name: Pull and Run Docker Image
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  pull-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Pull Docker image
+        run: docker pull ${{ secrets.REGISTRY_USERNAME }}/my-image:${{ github.sha }}
+
+      - name: Run Docker container
+        run: docker run --rm ${{ secrets.REGISTRY_USERNAME }}/my-image:${{ github.sha }}
+
+      - name: Check score
+        run: |
+          score=$(docker logs $(docker ps -aq) | grep "Score" | cut -d' ' -f2)
+          if [ $(echo "$score > 0.50" | bc) -eq 1 ]; then
+            echo "Score is greater than 0.50"
+          else
+            echo "Score is not greater than 0.50"
+            exit 1
+          fi
