@@ -16,5 +16,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build . -t ${{ secrets.cicd_renu_latest }}/my-image:${{ github.sha }}
-          docker push ${{ secrets.cicd_renu_latest }}/my-image:${{ github.sha }}
+          docker build . -t ${{ secrets.cicd_assignment }}/my-image:${{ github.sha }}
+          docker push ${{ secrets.cicd_assignment }}/my-image:${{ github.sha }}
